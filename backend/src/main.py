@@ -29,7 +29,7 @@ services = setup_integrations(config)
 # Set up routes
 setup_routes(app, services)
 
-# Make db accessible
+# Make db accessible to all routes
 app.dependency_overrides[get_db] = get_db
 
 # This part only runs when the file is executed directly
