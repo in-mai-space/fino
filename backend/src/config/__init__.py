@@ -10,11 +10,11 @@ def load_config():
             'FINO_DB_PASSWORD': os.getenv('FINO_DB_PASSWORD'),
             'FINO_DB_HOST': os.getenv('FINO_DB_HOST'),
             'FINO_DB_PORT': int(os.getenv('FINO_DB_PORT')),
-            'FINO_DB_NAME': int(os.getenv('FINO_DB_NAME')),
+            'FINO_DB_NAME': os.getenv('FINO_DB_NAME'),
             'FINO_DB_SSL': os.getenv('FINO_DB_SSL')
         },
         'app': {
-            'FINO_APP_PORT': os.getenv('3000'),
+            'FINO_APP_PORT': int(os.getenv('FINO_APP_PORT')),
         }
     }
     

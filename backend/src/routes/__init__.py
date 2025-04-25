@@ -1,4 +1,4 @@
-from healthcheck import healthcheck_router
+from src.routes.healthcheck import healthcheck_router
 
 def setup_routes(app, services):
     """
