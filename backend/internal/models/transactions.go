@@ -1,9 +1,13 @@
 package models
 
-import "time"
+import (
+	"time"
+
+	"github.com/google/uuid"
+)
 
 type Transaction struct {
-	ID                 uint      `gorm:"primaryKey"`
+	ID                 uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4();primaryKey"`
 	UserID             uint      `gorm:"not null"`
 	PlaidAccountID     uint      `gorm:"not null"`
 	PlaidTransactionID string    `gorm:"size:100;uniqueIndex;not null"`

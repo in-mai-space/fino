@@ -2,6 +2,8 @@ package models
 
 import (
 	"time"
+
+	"github.com/google/uuid"
 )
 
 type IntegrationNotion struct {
@@ -20,7 +22,7 @@ type IntegrationNotion struct {
 }
 
 type NotionDatabase struct {
-	ID                uint      `gorm:"primaryKey"`
+	ID                uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4();primaryKey"`
 	IntegrationUserID uint      `gorm:"not null;index"`
 	NotionDatabaseID  string    `gorm:"type:varchar(100);uniqueIndex;not null"`
 	Title             string    `gorm:"type:varchar(255);not null"`

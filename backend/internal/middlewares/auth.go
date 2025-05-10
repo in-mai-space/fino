@@ -38,7 +38,14 @@ func isAuthorized(secretKey string) func(*fiber.Ctx) error {
 			})
 		}
 
-		c.Locals("user", claims)
+		id, ok := claims["id"].(string)
+		if !ok {
+			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+				"error": "Token missing user ID",
+			})
+		}
+
+		c.Locals("userID", id)
 
 		return c.Next()
 	}

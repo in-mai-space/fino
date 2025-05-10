@@ -2,6 +2,8 @@ package models
 
 import (
 	"time"
+
+	"github.com/google/uuid"
 )
 
 type SyncInterval string
@@ -35,7 +37,7 @@ const (
 )
 
 type SyncConfiguration struct {
-	ID                 uint         `gorm:"primaryKey"`
+	ID                 uuid.UUID    `gorm:"type:uuid;default:uuid_generate_v4();primaryKey"`
 	UserID             uint         `gorm:"not null"`
 	SyncInterval       SyncInterval `gorm:"default:'daily'"`
 	SyncEnabled        bool         `gorm:"default:true"`
@@ -48,7 +50,7 @@ type SyncConfiguration struct {
 }
 
 type SyncLog struct {
-	ID           uint            `gorm:"primaryKey"`
+	ID           uuid.UUID       `gorm:"type:uuid;default:uuid_generate_v4();primaryKey"`
 	UserID       uint            `gorm:"not null"`
 	Status       SyncStatusEnum  `gorm:"default:'pending'"`
 	TriggerType  TriggerTypeEnum `gorm:"not null"`

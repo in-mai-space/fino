@@ -3,6 +3,7 @@ package internal
 import (
 	"fino/internal/config"
 	"fino/internal/database"
+	users "fino/internal/entities/users"
 	"fino/internal/middlewares"
 	"fino/internal/utilities"
 	"log"
@@ -55,10 +56,5 @@ func createApp(cfg *config.Config, db *gorm.DB) *fiber.App {
 func setupRoutes(app *fiber.App, db *gorm.DB, integration interface{}) {
 	apiV1 := app.Group("/api/v1")
 
-	// healthcheck route
-	apiV1.Get("/healthcheck", func(c *fiber.Ctx) error {
-		return c.JSON(fiber.Map{
-			"status": "ok",
-		})
-	})
+	users.UserRoutes(&apiV1, db)
 }

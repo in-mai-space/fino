@@ -2,6 +2,8 @@ package models
 
 import (
 	"time"
+
+	"github.com/google/uuid"
 )
 
 type IntegrationPlaid struct {
@@ -21,7 +23,7 @@ type IntegrationPlaid struct {
 }
 
 type PlaidAccount struct {
-	ID                uint             `gorm:"primaryKey"`
+	ID                uuid.UUID        `gorm:"type:uuid;default:uuid_generate_v4();primaryKey"`
 	IntegrationUserID uint             `gorm:"not null"`
 	PlaidAccountID    string           `gorm:"size:100;not null;uniqueIndex"`
 	Name              string           `gorm:"size:255;not null"`
