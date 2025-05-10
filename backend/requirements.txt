@@ -1,7 +1,0 @@
-fastapi[all]
-sqlalchemy
-psycopg2-binary
-uvicorn
-notion-client
-redis[hiredis]
-plaid-python
