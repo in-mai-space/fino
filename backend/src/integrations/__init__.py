@@ -1,7 +1,6 @@
 from notion_client import Client
 import plaid
 from plaid.api import plaid_api
-import redis
 
 def setup_integrations(config):
     """
@@ -16,10 +15,6 @@ def setup_integrations(config):
     plaid_client = create_plaid_client(config['plaid'])
     if plaid_client:
         services['plaid'] = plaid_client
-
-    redis_client = create_redis_client(config['redis'])
-    if redis_client:
-        services['redis'] = redis_client
     
     return services
 
@@ -48,21 +43,3 @@ def create_plaid_client(config):
         print(f"Error initializing Plaid client: {e}")
 
     return plaid_client
-
-def create_redis_client(config):
-    try:
-        redis_client = redis.Redis(
-            host=config['HOST'],
-            port=config['PORT'],
-            password=config['PASSWORD'] if config.get('PASSWORD') else None,
-            db=config['DB'],
-            ssl=config['SSL'],
-            decode_responses=True
-        )
-        
-        redis_client.ping()
-        print("Redis client initialized successfully")
-        return redis_client
-    except Exception as e:
-        print(f"Error initializing Redis client: {e}")
-        return None    
